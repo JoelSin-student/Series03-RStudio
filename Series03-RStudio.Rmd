@@ -1,0 +1,35 @@
+---
+title: "Series03-RStudio: ANOVA"
+author: "Joël SINGER"
+date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
+output:
+  html_document:
+    df_print: paged
+    code_folding: hide
+    toc: false
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+We will replicate the results of a study from the resulting dataset after the protocol.
+
+```{r data load}
+res <- read.delim("Results.txt", header = TRUE, sep=" ") |> 
+  mutate(GROUP = as.factor(GROUP)) |> 
+  mutate(SUBJ = as.factor(SUBJ)) |> 
+  mutate(TRIAL = as.factor(TRIAL)) |> 
+  mutate(ORI = as.factor(ORI)) |> 
+  mutate(DIR = as.factor(DIR)) |> 
+  mutate(ID = as.factor(ID)) |> 
+  mutate(REP = as.factor(REP))
+summary(res)
+
+# Arrange data
+
+
+```
+

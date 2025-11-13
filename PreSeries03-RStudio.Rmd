@@ -1,0 +1,140 @@
+---
+title: "PreSeries03-RStudio"
+author: "Joël SINGER"
+date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
+output:
+  html_document:
+    df_print: paged
+    code_folding: hide
+    toc: false
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+**Questions:**
+
+- in the general case for an ANOVA test:
+
+*What is the difference between ANOVA and a linear regression model?*
+
+An ANOVA compares means of multiple groups, whereas a linear regression shows the relation between two variables taking into account all points at once.
+\
+\
+*What is a between-subjects ANOVA? a within-subjects ANOVA? a mixed design ANOVA?*
+
+Between-subjects ANOVA is an analysis performed on the variances of independent groups. Within-subjects ANOVA compares the means of a single group collected at several time-points, or several conditions (repeated-measures). The mixed design mixes both by comparing the means of independent groups at different time-points.
+\
+\
+*What is an interaction effect?*
+
+An interaction effect indicates that two variables are not independent, meaning that the state of one variable acts on the effect of the other considered. In fact, we cannot distinguish which variable acts on the other only with the results of the ANOVA.
+\
+\
+*What is a principal effect (or main effect)?*
+
+A main effect is the effect of an independent variable while removing the effects of the others.
+\
+\
+*What textbook do you use to learn ANOVA? Provide the reference as: Title ; Editor, Year ; ISBN ; pages in the book (the 5 fields are mandatory, but you can provide an URL as a complementary information).*
+
+Design and Analysis of Experiments, 9th edition ; John Wiley & Sons, Inc, 2017 ; ISBN: 9781119113478 (PBK) ; 9781119299455 (EVALC) ; p. 64-134 ; https://www.researchgate.net/publication/362079778_Design_and_Analysis_of_Experiments_9th_Edition 
+\
+\
+\
+- in the context of the scientific article mentioned above:
+
+*What is the objective of the paper?*
+
+The paper sits on a famous result of the motor control literature that shows the speed-accuracy trade-off invariance in human: Fitts' Law. It aims at investigating if this trade-off is markedly different between healthy people and patients who suffered a stroke. In particular, if the patients slow more for a given accuracy or when increasing the need for accuracy or when the reaching must be done in the homolateral space.
+\
+\
+*What is the design of the experimental manipulation: what are the factors and the levels for each factor?*
+
+There are four factors in the ANOVA analysis: 
+. type of people (between-group): suffered a stroke, healthy age-matched, healthy young;
+. index of difficulty (within-group): 3.80 and 5.43 bit;
+. orientation (within-group): W, NW, N, NE, E;
+. direction (within-group): Outward, Inward.
+\
+\
+*What is the alpha risk used in the article to decide whether an effect is significant or not?*
+
+The alpha risk was set at 0.01, which is not common.
+\
+\
+\
+-in the context of Fig 3:
+
+*What is the scientific question that the ANOVA will help to answer?*
+
+Does stroke affect the time or the number of sub-movements needed to reach a target, and would it worsen when increasing difficulty ?
+\
+\
+*What is the main result of Fig 3? In what section-lines is it written in the article?*
+
+The main result is that the slope of the Fitts' Law is much higher for post-stroke patients (Results, Movement time and the Fitts’s law).
+\
+\
+*What is the design of the experimental manipulation in Fig 3?*
+
+Comparison of 3 groups on the same two tasks.
+\
+\
+*What are the dependent variables (analyzed variables) in Fig 3?*
+
+Left panel: movement time to complete task. Right panel: number of sub-movements performed to complete the task (as assessed by counting the number of velocity maxima).
+\
+\
+*What are the factors and the levels for each factor in Fig 3?*
+
+In Figure 3, the factors are only:
+. type of people (between-group): suffered a stroke, healthy age-matched, healthy young;
+. index of difficulty (within-group): 3.80 and 5.43 bit.
+\
+\
+\
+\
+**When to use ANOVA?**
+Copilot says:
+
+ANOVA is appropriate when:
+
+*1. You have one or more categorical independent variables (factors) with two or more levels (groups).*
+
+Yes, statistical analysis.
+\
+\
+*2. You have a continuous dependent variable.*
+
+Movement time, number of sub-movements.
+\
+\
+*3. You want to compare the means of the dependent variable across the different levels of the independent variables.*
+
+Yes, statistical analysis.
+\
+\
+*4.The observations are independent of each other.*
+
+This one could be challenged, because it was a fixed sequence of reaching movements. Maybe an effect of training could have played. 
+\
+\
+*5. The data are approximately normally distributed for each group.*
+
+They are not, but the distributions shapes are similar, ANOVA is robust to normality violation and non-parametric tests exhibited similar results.
+\
+\
+*6.The variances of the groups are approximately equal (homogeneity of variance).*
+
+Distributions are similar in shape.
+\
+\
+\
+\
+Questions:
+
+Are all the assumptions above verified in the context of Fig 3? For each assumption number, explain how it is checked in the paper (or what is missing in the paper).
