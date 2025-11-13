@@ -17,7 +17,10 @@ library(tidyverse)
 
 We will replicate the results of a study from the resulting dataset after the protocol.
 
+# Clean data
+
 ```{r data load}
+# Initial data load and mutation of chr type to factor
 res <- read.delim("Results.txt", header = TRUE, sep=" ") |> 
   mutate(GROUP = as.factor(GROUP)) |> 
   mutate(SUBJ = as.factor(SUBJ)) |> 
@@ -28,8 +31,29 @@ res <- read.delim("Results.txt", header = TRUE, sep=" ") |>
   mutate(REP = as.factor(REP))
 summary(res)
 
-# Arrange data
+# Arrange data so as to remove the ID3 group that lacks observations
+res_filt <- res |> 
+  filter(ID!="ID3")
 
+summary(res_filt)
+
+# Arrange data so as to remove R3 observations, because not complete
+res_filt <- res |> 
+  filter(ID!="ID3") |> 
+  filter(REP!="R3")
+
+summary(res_filt)
 
 ```
+
+
+# ANOVA to scout the interaction effect of group and difficulty index on movement time.
+
+```{r ANOVA}
+
+anova_res <- aov(MovementTime ~ GROUP * ID, data = res_filt)
+summary(anova_res)
+
+```
+
 
